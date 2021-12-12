@@ -1,0 +1,74 @@
+{
+  "version": 4,
+  "compilerVersion": "1.0.3+commit.48afe59",
+  "contract": "TokenLock",
+  "md5": "6415d6f72619f55334fa0f009dfd64ca",
+  "structs": [
+    {
+      "name": "RabinSig",
+      "params": [
+        {
+          "name": "s",
+          "type": "int"
+        },
+        {
+          "name": "padding",
+          "type": "bytes"
+        }
+      ]
+    }
+  ],
+  "alias": [
+    {
+      "name": "RabinPubKey",
+      "type": "int"
+    }
+  ],
+  "abi": [
+    {
+      "type": "function",
+      "name": "unlock",
+      "index": 0,
+      "params": [
+        {
+          "name": "sig",
+          "type": "Sig"
+        },
+        {
+          "name": "ownerPubKey",
+          "type": "PubKey"
+        },
+        {
+          "name": "unlockTime",
+          "type": "int"
+        },
+        {
+          "name": "rabinSig",
+          "type": "RabinSig"
+        }
+      ]
+    },
+    {
+      "type": "constructor",
+      "params": [
+        {
+          "name": "ownerPubKeyHash",
+          "type": "Ripemd160"
+        },
+        {
+          "name": "witnessPubkey",
+          "type": "int"
+        },
+        {
+          "name": "matureTime",
+          "type": "int"
+        }
+      ]
+    }
+  ],
+  "buildType": "release",
+  "file": "",
+  "asm": "$ownerPubKeyHash $witnessPubkey $matureTime OP_5 OP_PICK OP_OVER OP_GREATERTHANOREQUAL OP_VERIFY OP_5 OP_PICK OP_4 OP_NUM2BIN OP_5 OP_PICK OP_5 OP_PICK OP_4 OP_PICK OP_3 OP_PICK OP_2 OP_PICK OP_CAT OP_DUP OP_SHA256 OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_NIP OP_DUP OP_DUP OP_SHA256 OP_CAT OP_TUCK OP_NIP 00 OP_CAT OP_BIN2NUM OP_NIP OP_NIP OP_3 OP_PICK OP_4 OP_PICK OP_MUL OP_2 OP_PICK OP_MOD OP_OVER OP_3 OP_PICK OP_MOD OP_NUMEQUAL OP_NIP OP_NIP OP_NIP OP_NIP OP_NIP OP_VERIFY OP_6 OP_PICK OP_HASH160 OP_3 OP_PICK OP_EQUALVERIFY OP_7 OP_PICK OP_7 OP_PICK OP_CHECKSIG OP_NIP OP_NIP OP_NIP OP_NIP OP_NIP OP_NIP OP_NIP OP_NIP",
+  "sources": [],
+  "sourceMap": []
+}

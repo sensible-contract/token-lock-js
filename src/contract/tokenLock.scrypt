@@ -1,0 +1,19 @@
+import "util.scrypt";
+import "rabin.scrypt";
+
+contract TokenLock {
+  Ripemd160 ownerPubKeyHash;
+  RabinPubKey witnessPubkey;
+  int matureTime;
+
+  public function unlock(Sig sig, PubKey ownerPubKey, int unlockTime, RabinSig rabinSig) {
+    require(unlockTime >= this.matureTime);
+
+    //unlockTime have 4 bytes
+
+    require(RabinSignature.checkSig(num2bin(unlockTime, 4), rabinSig, this.witnessPubkey));
+
+    require(hash160(ownerPubKey) == this.ownerPubKeyHash);
+    require(checkSig(sig, ownerPubKey));
+  }
+}

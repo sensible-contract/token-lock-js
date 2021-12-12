@@ -1,0 +1,30 @@
+import "util.scrypt";
+
+// Rabin public key
+type RabinPubKey = int;
+
+// Rabin signature is combination (S, U).
+struct RabinSig {
+    // S
+    int s;
+    // U
+    bytes padding;
+}
+
+library RabinSignature {
+    static const int RABIN_HASH_TIMES = 11;
+
+    static function checkSig(bytes msg, RabinSig sig, RabinPubKey pubKey) : bool {
+        int h = hash(msg + sig.padding);
+        return (sig.s * sig.s) % pubKey == h % pubKey;
+    }
+
+    static function hash(bytes x) : int {
+        // expand hash
+        bytes hash = sha256(x);
+        loop(RABIN_HASH_TIMES) {
+            hash += sha256(hash);
+        }
+        return unpack(hash + b'00');
+    }
+}
